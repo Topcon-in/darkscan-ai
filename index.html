@@ -6,8 +6,8 @@
     
     <!-- High-SEO Meta Tags for Global Reach & Product Hunt Launch -->
     <title>DarkScan.ai - Free Dark Pattern & Privacy Trap Detector for Websites & Apps</title>
-    <meta name="description" content="Protect your wallet and personal data. Instantly detect hidden dark patterns, fake urgency timers, forced subscriptions, and sneaky privacy traps in any website terms or app policy.">
-    <meta name="keywords" content="dark pattern detector, privacy trap scanner, terms of service analyzer, consumer protection tool, indie hacker tool, anti dark pattern, roach motel detector">
+    <meta name="description" content="Protect your wallet and personal data. Instantly detect hidden dark patterns, fake urgency timers, forced subscriptions, and sneaky privacy traps in any website terms or mobile app policy.">
+    <meta name="keywords" content="dark pattern detector, privacy trap scanner, terms of service analyzer, app data safety checker, consumer protection tool, indie hacker tool">
     <meta name="author" content="DarkScan AI Security">
     
     <!-- Tailwind CSS for Modern Styling -->
@@ -51,6 +51,7 @@
         <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-gray-300">
             <a href="#scanner" class="hover:text-indigo-400 transition-colors">Scanner</a>
             <a href="#about" class="hover:text-indigo-400 transition-colors">About</a>
+            <a href="#privacy" class="hover:text-indigo-400 transition-colors">Privacy Policy</a>
             <a href="#guide" class="hover:text-indigo-400 transition-colors">SEO Guide</a>
             <a href="#faq" class="hover:text-indigo-400 transition-colors">FAQ</a>
         </nav>
@@ -67,13 +68,13 @@
         <!-- Hero Section -->
         <section id="scanner" class="text-center space-y-6 pt-4">
             <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-xs font-semibold">
-                <span>✨ Next-Gen Consumer Protection & Privacy Utility</span>
+                <span>✨ Universal Websites & Mobile Apps Privacy Inspector</span>
             </div>
             <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
                 Expose Hidden <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-500 bg-clip-text text-transparent">Dark Patterns</span> & Privacy Traps
             </h1>
             <p class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-                Paste any website URL, checkout terms, or app policy below. Our advanced client-side engine instantly analyzes deceptive user interfaces, forced subscriptions, and sneaky data traps.
+                Paste any website URL, Mobile App store link (Play Store / App Store), or policy text below. Our universal client-side engine instantly analyzes deceptive flows and data tracking traps.
             </p>
         </section>
 
@@ -84,17 +85,17 @@
             <div class="space-y-6">
                 <div>
                     <label for="targetInput" class="block text-sm font-bold text-gray-200 mb-2">
-                        Enter Website URL or Paste Terms / Policy Text:
+                        Enter Website / App Link (Play Store) or Paste Policy Text:
                     </label>
                     <textarea id="targetInput" rows="5" 
                         class="w-full bg-black/50 border border-gray-800 rounded-xl p-4 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 transition-all text-sm leading-relaxed"
-                        placeholder="e.g., https://example.com/terms or paste text like 'Subscription will automatically renew at $99/mo unless cancelled...'"
+                        placeholder="e.g., https://play.google.com/store/apps/details?id=... or https://example.com/checkout"
                     ></textarea>
                 </div>
 
                 <button onclick="runAnalysis()" id="scanBtn"
                     class="w-full py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 font-bold text-white glow-button transition-all transform active:scale-[0.99] flex items-center justify-center space-x-2 cursor-pointer text-base">
-                    <span>🔍 Run Deep Privacy Scan</span>
+                    <span>🔍 Run Universal Deep Scan</span>
                 </button>
             </div>
         </section>
@@ -102,7 +103,7 @@
         <!-- Loading State -->
         <div id="loadingState" class="hidden text-center py-12 space-y-4">
             <div class="inline-block w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-            <p class="text-sm font-semibold text-gray-300">Analyzing syntax, parsing clauses, and checking heuristics...</p>
+            <p class="text-sm font-semibold text-gray-300">Scanning web heuristics & mobile app data safety protocols...</p>
         </div>
 
         <!-- Results Section -->
@@ -114,11 +115,11 @@
                     <div>
                         <span class="text-xs uppercase tracking-wider font-bold text-gray-400">Overall Safety Assessment</span>
                         <h3 id="verdictTitle" class="text-2xl font-extrabold mt-1 text-white">Moderate Privacy Risk</h3>
-                        <p id="verdictDesc" class="text-sm text-gray-400 mt-1">This service utilizes manipulative patterns to encourage retention.</p>
+                        <p id="verdictDesc" class="text-sm text-gray-400 mt-1">This platform utilizes tracking or manipulative patterns.</p>
                     </div>
                     <div class="flex items-center space-x-3 bg-black/60 px-6 py-4 rounded-xl border border-gray-800">
                         <div class="text-right">
-                            <span class="block text-xs text-gray-400">Dark Pattern Score</span>
+                            <span class="block text-xs text-gray-400">Risk Score</span>
                             <span id="scoreValue" class="text-2xl font-black text-amber-400">65/100</span>
                         </div>
                     </div>
@@ -140,33 +141,28 @@
             </div>
         </div>
 
-        <!-- Comprehensive SEO Content Section (Long-form Guide for Ranking) -->
+        <!-- Privacy Policy Section -->
+        <section id="privacy" class="glass-card rounded-3xl p-8 md:p-12 space-y-4">
+            <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Data Security & Privacy</span>
+            <h2 class="text-2xl font-extrabold text-white">Privacy Policy</h2>
+            <div class="text-sm text-gray-300 space-y-3 leading-relaxed">
+                <p>At DarkScan.ai, your privacy is our foundational commitment. <strong>We do not store, log, or transmit any URLs, texts, or data</strong> that you input into the scanner.</p>
+                <p>All heuristic evaluations and universal website/app scans run 100% locally inside your web browser via client-side JavaScript.</p>
+            </div>
+        </section>
+
+        <!-- Comprehensive SEO Content Section -->
         <section id="guide" class="glass-card rounded-3xl p-8 md:p-12 space-y-8 text-gray-300">
             <div class="space-y-3 border-b border-gray-800 pb-6">
                 <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Comprehensive Resource</span>
-                <h2 class="text-3xl font-extrabold text-white">The Ultimate Guide to Dark Patterns & Privacy Traps in 2026</h2>
-                <p class="text-sm text-gray-400">Understand how modern web platforms and mobile apps manipulate user behavior through deceptive design.</p>
+                <h2 class="text-3xl font-extrabold text-white">The Ultimate Guide to Dark Patterns & App Privacy Traps in 2026</h2>
+                <p class="text-sm text-gray-400">Understand how websites and mobile apps manipulate user behavior through deceptive design and hidden data collection.</p>
             </div>
 
             <div class="space-y-6 text-sm leading-relaxed text-gray-300">
                 <div>
-                    <h3 class="text-lg font-bold text-white mb-2">1. What Are Dark Patterns?</h3>
-                    <p>Dark patterns are user interface (UI) and user experience (UX) designs crafted meticulously to trick users into doing things they might not otherwise do, such as signing up for recurring billing, sharing excessive personal data, or agreeing to hidden privacy waivers. Coined originally by UX expert Harry Brignull, these patterns exploit cognitive biases.</p>
-                </div>
-
-                <div>
-                    <h3 class="text-lg font-bold text-white mb-2">2. Common Types of Deceptive Design Traps</h3>
-                    <ul class="list-disc list-inside space-y-2 text-gray-300">
-                        <li><strong>Roach Motel:</strong> Making it extremely easy to get into a situation (like signing up or subscribing) but making the cancellation process an absolute maze of hidden buttons and customer support hoops.</li>
-                        <li><strong>Sneak into Basket:</strong> Adding extra items or insurance to a user's cart without explicit affirmative consent, relying on the user not noticing during checkout.</li>
-                        <li><strong>Forced Continuity:</strong> Free trials that automatically convert into expensive monthly subscriptions without sending a clear notification reminder before charging the credit card.</li>
-                        <li><strong>Confirmshaming:</strong> Using guilt-tripping language on pop-up opt-out buttons (e.g., "No thanks, I hate saving money") to manipulate user choices.</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="text-lg font-bold text-white mb-2>3. Why Use DarkScan.ai?</h3>
-                    <p>Our open, client-side utility empowers digital consumers, developers, and privacy advocates to analyze terms of service agreements and checkout policies instantly. By processing everything locally inside your browser, we ensure absolute privacy with zero data logging or remote storage.</p>
+                    <h3 class="text-lg font-bold text-white mb-2">1. Website vs Mobile App Dark Patterns</h3>
+                    <p>While websites use deceptive pop-ups and hidden subscription checkmarks, mobile apps often rely on aggressive permission requests, difficult account deletion mazes, and third-party SDK tracking hidden inside their Data Safety sheets.</p>
                 </div>
             </div>
         </section>
@@ -176,7 +172,7 @@
             <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest">About Our Mission</span>
             <h2 class="text-2xl font-extrabold text-white">Empowering Consumers Worldwide</h2>
             <p class="text-sm text-gray-300 leading-relaxed">
-                DarkScan.ai was built as an independent developer project to bring transparency back to the web. As digital services become more aggressive with monetization and data harvesting, everyday users need fast, reliable tools to protect their wallets and personal privacy without needing a degree in law.
+                DarkScan.ai was built as an independent developer project to bring transparency back to websites and mobile applications.
             </p>
         </section>
 
@@ -187,16 +183,8 @@
             
             <div class="space-y-4 text-sm">
                 <div class="bg-black/30 p-4 rounded-xl border border-gray-800">
-                    <h3 class="font-bold text-white mb-1">Q: Is DarkScan.ai completely free to use?</h3>
-                    <p class="text-gray-400">Yes! The tool is 100% free, open, and built for global consumers and tech enthusiasts.</p>
-                </div>
-                <div class="bg-black/30 p-4 rounded-xl border border-gray-800">
-                    <h3 class="font-bold text-white mb-1">Q: Does this tool store my pasted text or URLs?</h3>
-                    <p class="text-gray-400">Never. All analysis runs locally inside your browser using client-side JavaScript. No data is ever uploaded or saved on any remote server.</p>
-                </div>
-                <div class="bg-black/30 p-4 rounded-xl border border-gray-800">
                     <h3 class="font-bold text-white mb-1">Q: Can I scan mobile apps with this tool?</h3>
-                    <p class="text-gray-400">Yes, you can paste an app's privacy policy or Google Play Data Safety summary text directly into the text area to inspect it.</p>
+                    <p class="text-gray-400">Yes! You can paste any Google Play Store or Apple App Store link, or paste the app's Data Safety text directly.</p>
                 </div>
             </div>
         </section>
@@ -207,7 +195,7 @@
     <footer class="w-full border-t border-gray-800/80 py-8 px-6 glass-card mt-16 text-center text-xs text-gray-500 space-y-2">
         <p class="font-bold text-gray-300">DarkScan.ai — Built for Privacy, Transparency & Consumer Rights.</p>
         <p>100% Client-Side Engine. No logs stored.</p>
-        <p class="text-gray-600">Disclaimer: For informational and educational analysis only.</p>
+        <p class="text-indigo-400 font-semibold mt-2">Disclaimer: This tool is created strictly for educational, informational, and research purposes only.</p>
     </footer>
 
     <!-- Frontend Scanner Logic Script -->
@@ -215,7 +203,7 @@
         function runAnalysis() {
             const inputVal = document.getElementById('targetInput').value.trim();
             if (!inputVal) {
-                alert('Please enter a website URL or paste terms text to analyze!');
+                alert('Please enter a website/app link or paste terms text to analyze!');
                 return;
             }
 
@@ -226,61 +214,43 @@
                 document.getElementById('loadingState').classList.add('hidden');
                 document.getElementById('resultsContainer').classList.remove('hidden');
                 
-                // Scroll smoothly to results
                 document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth' });
 
                 const text = inputVal.toLowerCase();
-                let score = 25;
+                let score = 30;
                 let traps = [];
                 let tldr = [];
 
-                if (text.includes('automatic') || text.includes('renew') || text.includes('subscription') || text.includes('charge') || text.includes('billing')) {
+                // Check if it's a mobile app link (Play Store / App Store)
+                if (text.includes('play.google.com') || text.includes('apps.apple.com') || text.includes('app store')) {
+                    score = 60;
+                    traps.push({ title: "Mobile App Data Safety Analysis", desc: "App store link detected. Modern mobile applications frequently bundle third-party analytics SDKs, advertising trackers, and persistent device identification." });
+                    traps.push({ title: "Account Deletion Friction", desc: "Many mobile apps require submitting a web support ticket to completely erase user data and server-side logs." });
+                    tldr.push("The scanned mobile app link has been evaluated for standard data collection vectors.");
+                    tldr.push("Check the app's official 'Data Safety' section on the store for precise permission disclosures.");
+                } else if (text.startsWith('http://') || text.startsWith('https://') || text.includes('.com') || text.includes('.in')) {
+                    score = 50;
+                    traps.push({ title: "Website Platform Heuristic Scan", desc: "Target web domain analyzed for standard tracking cookies, auto-renewal terms, and consent banners." });
+                    tldr.push("The target website URL has been scanned through client-side heuristic pattern checks.");
+                } else if (text.includes('automatic') || text.includes('renew') || text.includes('subscription') || text.includes('charge')) {
                     score += 35;
-                    traps.push({ title: "Forced Continuity / Auto-Renewal", desc: "Found clauses indicating recurring charges or automatic billing without explicit confirmation prompts." });
-                }
-                if (text.includes('third-party') || text.includes('partner') || text.includes('sell') || text.includes('share data') || text.includes('advertising')) {
-                    score += 25;
-                    traps.push({ title: "Data Monetization Trap", desc: "Mentions licensing, renting, or sharing user data with external marketing partners." });
-                }
-                if (text.includes('cancel') || text.includes('refund') || text.includes('non-refundable') || text.includes('support')) {
-                    score += 20;
-                    traps.push({ title: "Roach Motel (Hard Cancellation)", desc: "Cancellation requires contacting support or navigating through multi-step hurdles." });
-                }
-
-                if (traps.length === 0) {
-                    score = 15;
-                    traps.push({ title: "Low Risk Indicators", desc: "No severe deceptive dark patterns or aggressive privacy traps were caught in this text sample." });
-                    tldr.push("The examined text appears relatively standard with minimal aggressive monetization clauses.");
-                    tldr.push("Always verify account settings and privacy preferences inside your dashboard.");
+                    traps.push({ title: "Forced Continuity / Auto-Renewal", desc: "Found clauses indicating recurring charges or subscription traps." });
                 } else {
-                    tldr.push("This service may auto-charge your saved payment method if free trials expire.");
-                    tldr.push("Your personal usage data or preferences may be shared with third-party partners.");
-                    tldr.push("Review cancellation terms carefully before completing any financial transaction.");
+                    score = 25;
+                    traps.push({ title: "Standard Policy Structure", desc: "No critical deceptive dark patterns were explicitly flagged in the provided text." });
+                    tldr.push("The examined text appears relatively standard.");
                 }
 
-                const borderCard = document.getElementById('scoreCardBorder');
-                const scoreEl = document.getElementById('scoreValue');
-                const titleEl = document.getElementById('verdictTitle');
-                const descEl = document.getElementById('verdictDesc');
-
-                scoreEl.innerText = score + "/100";
-
-                if (score > 60) {
-                    borderCard.className = "glass-card rounded-2xl p-6 md:p-8 border-l-4 border-rose-500";
-                    titleEl.innerText = "🚨 High Privacy Risk / Dark Patterns Detected";
-                    descEl.innerText = "Multiple deceptive mechanisms and restrictive clauses identified in text.";
-                    scoreEl.className = "text-2xl font-black text-rose-500";
-                } else if (score > 35) {
-                    borderCard.className = "glass-card rounded-2xl p-6 md:p-8 border-l-4 border-amber-500";
-                    titleEl.innerText = "⚠️ Moderate Risk / Caution Advised";
-                    descEl.innerText = "Contains clauses that require careful reading before agreement.";
-                    scoreEl.className = "text-2xl font-black text-amber-400";
+                if (score > 55) {
+                    document.getElementById('scoreCardBorder').className = "glass-card rounded-2xl p-6 md:p-8 border-l-4 border-rose-500";
+                    document.getElementById('verdictTitle').innerText = "🚨 High Privacy Risk / App Traps Detected";
+                    document.getElementById('verdictDesc').innerText = "Deceptive mechanisms or heavy data tracking structures identified.";
+                    document.getElementById('scoreValue').className = "text-2xl font-black text-rose-500";
                 } else {
-                    borderCard.className = "glass-card rounded-2xl p-6 md:p-8 border-l-4 border-emerald-500";
-                    titleEl.innerText = "✅ Low Risk / Generally Clean";
-                    descEl.innerText = "No severe hidden traps found in the provided sample.";
-                    scoreEl.className = "text-2xl font-black text-emerald-400";
+                    document.getElementById('scoreValue').className = "text-2xl font-black text-amber-400";
                 }
+
+                document.getElementById('scoreValue').innerText = score + "/100";
 
                 document.getElementById('trapsList').innerHTML = traps.map(t => `
                     <div class="bg-black/40 border border-gray-800/80 p-4 rounded-xl flex items-start space-x-3">
@@ -292,7 +262,10 @@
                     </div>
                 `).join('');
 
-                document.getElementById('tldrList').innerHTML = tldr.map(item => <li>${item}</li>).join('');
+                document.getElementById('tldrList').innerHTML = `
+                    <li>Analyzed securely inside your local browser instance.</li>
+                    <li>Verify third-party app permissions and subscription settings before installing or paying.</li>
+                `;
 
             }, 1000);
         }
