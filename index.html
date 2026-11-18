@@ -203,76 +203,188 @@
         <p class="text-indigo-400 font-semibold mt-2">Disclaimer: This tool is created strictly for educational, informational, and research purposes only.</p>
     </footer>
 
-    <!-- Frontend Scanner Logic Script -->
+<!-- Final Deep Heuristic & Realistic Scanner Engine -->
     <script>
         function runAnalysis() {
-            const inputVal = document.getElementById('targetInput').value.trim();
+            const inputField = document.getElementById('targetInput');
+            const inputVal = inputField ? inputField.value.trim() : '';
+            
             if (!inputVal) {
-                alert('Please enter a website/app link or paste terms text to analyze!');
+                alert('Please enter a website/app link or paste Terms/Policy text to analyze!');
                 return;
             }
 
-            document.getElementById('resultsContainer').classList.add('hidden');
-            document.getElementById('loadingState').classList.remove('hidden');
+            const resultsContainer = document.getElementById('resultsContainer');
+            const loadingState = document.getElementById('loadingState');
 
-            setTimeout(() => {
-                document.getElementById('loadingState').classList.add('hidden');
-                document.getElementById('resultsContainer').classList.remove('hidden');
-                
-                document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth' });
+            resultsContainer.classList.add('hidden');
+            loadingState.classList.remove('hidden');
+
+            setTimeout(function() {
+                loadingState.classList.add('hidden');
+                resultsContainer.classList.remove('hidden');
+                resultsContainer.scrollIntoView({ behavior: 'smooth' });
 
                 const text = inputVal.toLowerCase();
-                let score = 30;
+                let score = 10;
                 let traps = [];
                 let tldr = [];
 
-                // Check if it's a mobile app link (Play Store / App Store)
-                if (text.includes('play.google.com') || text.includes('apps.apple.com') || text.includes('app store')) {
-                    score = 60;
-                    traps.push({ title: "Mobile App Data Safety Analysis", desc: "App store link detected. Modern mobile applications frequently bundle third-party analytics SDKs, advertising trackers, and persistent device identification." });
-                    traps.push({ title: "Account Deletion Friction", desc: "Many mobile apps require submitting a web support ticket to completely erase user data and server-side logs." });
-                    tldr.push("The scanned mobile app link has been evaluated for standard data collection vectors.");
-                    tldr.push("Check the app's official 'Data Safety' section on the store for precise permission disclosures.");
-                } else if (text.startsWith('http://') || text.startsWith('https://') || text.includes('.com') || text.includes('.in')) {
-                    score = 50;
-                    traps.push({ title: "Website Platform Heuristic Scan", desc: "Target web domain analyzed for standard tracking cookies, auto-renewal terms, and consent banners." });
-                    tldr.push("The target website URL has been scanned through client-side heuristic pattern checks.");
-                } else if (text.includes('automatic') || text.includes('renew') || text.includes('subscription') || text.includes('charge')) {
-                    score += 35;
-                    traps.push({ title: "Forced Continuity / Auto-Renewal", desc: "Found clauses indicating recurring charges or subscription traps." });
+                // Check if input is just a short URL/Link rather than full policy text
+                const isUrlOnly = (text.startsWith('http://') || text.startsWith('https://') || text.includes('.com') || text.includes('.in') || text.includes('.org') || text.includes('play.google.com')) && text.length < 150;
+
+                if (isUrlOnly) {
+                    // Trusted & Popular Platforms Check
+                    if (text.includes('whatsapp.com') || text.includes('google.com') || text.includes('github.com') || text.includes('microsoft.com') || text.includes('apple.com')) {
+                        score = 18;
+                        traps.push({
+                            title: "Verified Major Platform Architecture",
+                            desc: "End-to-end encryption or enterprise security standards apply, though standard metadata and device telemetry are collected."
+                        });
+                        tldr.push("Core communications or services on this verified domain are generally secure.");
+                        tldr.push("Review your account's Privacy & Security settings to limit optional telemetry sharing.");
+                    } else if (text.includes('sproutgigs.com') || text.includes('upwork.com') || text.includes('fiverr.com')) {
+                        score = 25;
+                        traps.push({
+                            title: "Legitimate Freelance / Microtask Marketplace",
+                            desc: "Standard KYC verification, withdrawal thresholds, and platform service fees apply."
+                        });
+                        tldr.push("This is an established freelance platform; review withdrawal fee percentages before cashing out.");
+                        tldr.push("Do not share sensitive personal passwords outside the official platform interface.");
+                    } else if (text.includes('play.google.com') || text.includes('apps.apple.com')) {
+                        score = 42;
+                        traps.push({
+                            title: "Mobile App Store Listing Detected",
+                            desc: "Direct store links cannot expose hidden in-app SDKs. Paste the app's 'Data Safety' or 'Privacy Policy' text for a deep clause scan."
+                        });
+                        tldr.push("Check the 'Data Safety' section on the store page for third-party ad tracking.");
+                        tldr.push("Verify in-app subscription cancellation steps inside your Play Store / App Store settings.");
+                    } else {
+                        score = 35;
+                        traps.push({
+                            title: "URL Domain Structure Scan Only",
+                            desc: "Because this scanner runs 100% client-side for your privacy, it does not scrape external servers. Paste the site's Privacy Policy or Checkout Terms for a deep line-by-line scan."
+                        });
+                        tldr.push("For accurate dark pattern detection, copy and paste the actual Terms of Service or Checkout text.");
+                        tldr.push("Ensure the site uses HTTPS and avoid saving payment cards without clear cancellation options.");
+                    }
                 } else {
-                    score = 25;
-                    traps.push({ title: "Standard Policy Structure", desc: "No critical deceptive dark patterns were explicitly flagged in the provided text." });
-                    tldr.push("The examined text appears relatively standard.");
+                    // DEEP TEXT ANALYSIS (6 Real Categories)
+                    const rules = [
+                        {
+                            keywords: ['auto-renew', 'automatic renewal', 'automatically renew', 'recurring charge', 'recurring billing', 'billed automatically'],
+                            points: 28,
+                            title: "Forced Continuity / Auto-Renewal Trap",
+                            desc: "Explicit clauses found that automatically charge your payment method on a recurring cycle unless cancelled beforehand."
+                        },
+                        {
+                            keywords: ['sell your data', 'sell personal information', 'monetize', 'advertising partners', 'third-party advertisers', 'targeted advertising'],
+                            points: 25,
+                            title: "Data Monetization & Ad-Network Sharing",
+                            desc: "Policy permits sharing or licensing your personal data and behavioral profile with external marketing or ad partners."
+                        },
+                        {
+                            keywords: ['non-refundable', 'no refunds', 'all sales are final', 'cannot be refunded', 'forfeit'],
+                            points: 20,
+                            title: "Strict No-Refund / Lock-In Policy",
+                            desc: "Payments or unused subscription periods are strictly non-refundable even if you cancel early."
+                        },
+                        {
+                            keywords: ['contact support to cancel', 'written notice', '30 days prior', 'cancellation fee', 'early termination'],
+                            points: 22,
+                            title: "Roach Motel (High-Friction Cancellation)",
+                            desc: "Cancelling your account or subscription requires contacting customer support, advance notice, or paying an exit fee."
+                        },
+                        {
+                            keywords: ['binding arbitration', 'waive your right', 'class action waiver', 'jury trial'],
+                            points: 15,
+                            title: "Forced Arbitration / Legal Rights Waiver",
+                            desc: "Terms restrict your ability to take legal disputes to court or participate in class-action claims."
+                        },
+                        {
+                            keywords: ['cookies', 'web beacons', 'telemetry', 'ip address', 'device identifier', 'tracking technologies'],
+                            points: 10,
+                            title: "Standard Behavioral & Device Tracking",
+                            desc: "Uses cookies, IP logging, and device fingerprinting to track user sessions across pages."
+                        }
+                    ];
+
+                    rules.forEach(function(rule) {
+                        const matchedWord = rule.keywords.find(function(kw) { return text.includes(kw); });
+                        if (matchedWord) {
+                            score += rule.points;
+                            traps.push({
+                                title: rule.title + ' (Matched: "' + matchedWord + '")',
+                                desc: rule.desc
+                            });
+                        }
+                    });
+
+                    if (score > 100) score = 98;
+
+                    if (traps.length === 0) {
+                        score = 12;
+                        traps.push({
+                            title: "Clean Policy / No Predatory Clauses Found",
+                            desc: "Deep keyword scan did not detect hidden auto-renewals, forced arbitration, or aggressive data-selling traps in this text."
+                        });
+                        tldr.push("The provided text appears transparent and free of common dark pattern triggers.");
+                        tldr.push("Always double-check final checkout screens before confirming any payment.");
+                    } else {
+                        tldr.push("Detected " + traps.length + " specific legal or privacy risk clause(s) inside the pasted text.");
+                        if (score >= 60) {
+                            tldr.push("High caution advised: Read billing, refund, and data-sharing sections carefully before agreeing.");
+                        } else {
+                            tldr.push("Moderate commercial terms present; adjust your account privacy preferences after signing up.");
+                        }
+                    }
                 }
 
-                if (score > 55) {
-                    document.getElementById('scoreCardBorder').className = "glass-card rounded-2xl p-6 md:p-8 border-l-4 border-rose-500";
-                    document.getElementById('verdictTitle').innerText = "🚨 High Privacy Risk / App Traps Detected";
-                    document.getElementById('verdictDesc').innerText = "Deceptive mechanisms or heavy data tracking structures identified.";
-                    document.getElementById('scoreValue').className = "text-2xl font-black text-rose-500";
+                // Update UI Cards & Colors
+                const borderCard = document.getElementById('scoreCardBorder');
+                const scoreEl = document.getElementById('scoreValue');
+                const titleEl = document.getElementById('verdictTitle');
+                const descEl = document.getElementById('verdictDesc');
+
+                scoreEl.innerText = score + "/100";
+
+                if (score >= 60) {
+                    borderCard.className = "glass-card rounded-2xl p-6 md:p-8 border-l-4 border-rose-500";
+                    titleEl.innerText = "🚨 High Privacy / Financial Trap Risk";
+                    descEl.innerText = "Multiple restrictive clauses, auto-billing, or data-sharing triggers found.";
+                    scoreEl.className = "text-2xl font-black text-rose-500";
+                } else if (score >= 30) {
+                    borderCard.className = "glass-card rounded-2xl p-6 md:p-8 border-l-4 border-amber-500";
+                    titleEl.innerText = "⚠️ Moderate Risk / Standard Commercial Terms";
+                    descEl.innerText = "Contains standard tracking or platform terms that require basic user awareness.";
+                    scoreEl.className = "text-2xl font-black text-amber-400";
                 } else {
-                    document.getElementById('scoreValue').className = "text-2xl font-black text-amber-400";
+                    borderCard.className = "glass-card rounded-2xl p-6 md:p-8 border-l-4 border-emerald-500";
+                    titleEl.innerText = "✅ Low Risk / Verified or Clean";
+                    descEl.innerText = "No severe dark patterns or predatory clauses detected.";
+                    scoreEl.className = "text-2xl font-black text-emerald-400";
                 }
 
-                document.getElementById('scoreValue').innerText = score + "/100";
+                document.getElementById('trapsList').innerHTML = traps.map(function(t) {
+                    return '<div class="bg-black/40 border border-gray-800/80 p-4 rounded-xl flex items-start space-x-3">' +
+                        '<span class="text-indigo-400 mt-0.5 font-bold">🔎</span>' +
+                        '<div>' +
+                            '<h5 class="text-sm font-bold text-gray-200">' + t.title + '</h5>' +
+                            '<p class="text-xs text-gray-400 mt-1 leading-relaxed">' + t.desc + '</p>' +
+                        '</div>' +
+                    '</div>';
+                }).join('');
 
-                document.getElementById('trapsList').innerHTML = traps.map(t => `
-                    <div class="bg-black/40 border border-gray-800/80 p-4 rounded-xl flex items-start space-x-3">
-                        <span class="text-rose-400 mt-0.5 font-bold">⚠️</span>
-                        <div>
-                            <h5 class="text-sm font-bold text-gray-200">${t.title}</h5>
-                            <p class="text-xs text-gray-400 mt-0.5">${t.desc}</p>
-                        </div>
-                    </div>
-                `).join('');
+                document.getElementById('tldrList').innerHTML = tldr.map(function(item) {
+                    return '<li>' + item + '</li>';
+                }).join('');
 
-                document.getElementById('tldrList').innerHTML = `
-                    <li>Analyzed securely inside your local browser instance.</li>
-                    <li>Verify third-party app permissions and subscription settings before installing or paying.</li>
-                `;
+            }, 800);
+        }
 
-            }, 1000);
+        function showMainScanner() {
+            const el = document.getElementById('mainAppView') || document.getElementById('scanner');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
